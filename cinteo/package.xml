@@ -12,7 +12,6 @@
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <exec_depend>cinteo_bringup</exec_depend>
-  <exec_depend>cinteo_bridge</exec_depend>
   <exec_depend>cinteo_description</exec_depend>
   <exec_depend>cinteo_hardware</exec_depend>
 
