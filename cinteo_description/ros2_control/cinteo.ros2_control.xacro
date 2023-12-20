@@ -52,7 +52,7 @@
     <xacro:property name="simulation_hardware_plugin"
       value="romea_mobile_base_gazebo/GazeboSystemInterface2FWS2RWD" />
     <xacro:property name="live_hardware_plugin" 
-      value="cinteo_hardware/Robot2FWS2RWDHardware" />
+      value="cinteo_hardware/CinteoHardware" />
 
 
     <xacro:base_control mode="${mode}" base_name="${base_name}" />
