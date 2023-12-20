@@ -1,0 +1,9 @@
+<library path="cinteo_hardware">
+  <class name="cinteo_hardware/CinteoHardware"
+         type="romea::ros2::CinteoHardware"
+         base_class_type="hardware_interface::SystemInterface">
+    <description>
+      Hardware interface for cinteo robot
+    </description>
+  </class>
+</library>
