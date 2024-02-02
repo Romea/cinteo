@@ -1,0 +1,3 @@
+[submodule "cinteo_description/meshes"]
+	path = cinteo_description/meshes
+	url = https://gitlab.xlim.fr/tirrex/cinteo/meshes.git
