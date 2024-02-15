@@ -3,7 +3,11 @@
 
    <xacro:macro name="cinteo" params="mode prefix">
 
-      <xacro:include filename="$(find romea_mobile_base_description)/urdf/base2FWSxxx.chassis.xacro" />
+      <xacro:include filename="$(find romea_mobile_base_description)/urdf/base1FASxxx.chassis.xacro" />
+      <xacro:include filename="$(find cinteo_description)/urdf/visual/bridge.xacro" />
+      <xacro:include filename="$(find cinteo_description)/urdf/visual/chassis.xacro" />
+      <xacro:include filename="$(find cinteo_description)/urdf/visual/wheels.xacro" />
+      <xacro:include filename="$(find cinteo_description)/urdf/visual/arms.xacro" />
 
       <xacro:property name="conf" value="$(find cinteo_description)/config/cinteo.yaml" />
       <xacro:property name="props" value="${load_yaml(conf)}" />
@@ -15,6 +19,8 @@
          value="${props['links']['base_footprint_link_name']}" />
       <xacro:property name="inertial_link"
          value="${props['links']['inertial_link_name']}" />
+      <xacro:property name="front_axle_steering_link"
+         value="${props['links']['front_axle_steering_link_name']}" />
       <xacro:property name="front_left_wheel_steering_link"
          value="${props['links']['front_left_wheel_steering_link_name']}" />
       <xacro:property name="front_right_wheel_steering_link"
@@ -33,6 +39,8 @@
          value="${props['joints']['base_footprint_joint_name']}" />
       <xacro:property name="inertial_joint"
          value="${props['joints']['inertial_joint_name']}" />
+      <xacro:property name="front_axle_steering_joint"
+         value="${props['joints']['front_axle_steering_joint_name']}" />
       <xacro:property name="front_left_wheel_steering_joint"
          value="${props['joints']['front_left_wheel_steering_joint_name']}" />
       <xacro:property name="front_right_wheel_steering_joint"
@@ -92,6 +100,8 @@
       <!-- Wheel Properties -->
       <xacro:property name="front_hub_carrier_offset"
          value="${props['geometry']['front_axle']['wheels']['hub_carrier_offset']}" />
+      <xacro:property name="front_wheel_x_offset"
+         value="${props['geometry']['front_axle']['wheels']['x_offset']}" />
       <xacro:property name="rear_hub_carrier_offset"
          value="${props['geometry']['rear_axle']['wheels']['hub_carrier_offset']}" />
       <xacro:property name="front_wheel_radius"
@@ -111,34 +121,38 @@
       <xacro:property name="rear_wheel_mass" value="5" />
 
       <!-- Steering Properties -->
-      <xacro:property name="minimal_wheel_steering_angle"
-         value="-${props['front_wheels_steering_control']['command']['maximal_angle']}" />
+      <xacro:property name="maximal_axle_steering_angle"
+         value="${props['front_axle_steering_control']['command']['maximal_angle']}" />
       <xacro:property name="maximal_wheel_steering_angle"
-         value="${props['front_wheels_steering_control']['command']['maximal_angle']}" />
+         value="${atan(tan(maximal_axle_steering_angle)/(1-tan(maximal_axle_steering_angle)*front_track/(2*wheelbase)))}" />
 
+      <xacro:property name="minimal_axle_steering_angle"
+         value="${-maximal_axle_steering_angle}" />
+      <xacro:property name="minimal_wheel_steering_angle"
+         value="${-maximal_wheel_steering_angle} " />
+
+
+      <xacro:property name="front_axle_steering_link_mass" value="1" />
+      <xacro:property name="front_axle_steering_link_x" value="0.05" />
+      <xacro:property name="front_axle_steering_link_y" value="0.05" />
+      <xacro:property name="front_axle_steering_link_z" value="0.05" />
       <xacro:property name="front_wheel_steering_link_mass" value="1" />
       <xacro:property name="front_wheel_steering_link_y" value="${front_hub_carrier_offset}" />
       <xacro:property name="front_wheel_steering_link_xz" value="0.1" />
 
       <xacro:chassis>
-         <!-- visual chassis -->
-         <visual>
-            <origin
-               xyz="${aabb_center_x-body_reference_x} ${aabb_center_y}  ${aabb_center_z-chassis_height}"
-               rpy="0 0 0" />
-            <geometry>
-               <box size="${aabb_length} ${aabb_width} ${aabb_height}" />
-            </geometry>
-         </visual>
-         <!-- visual front steering -->
-         <box
-            size="${front_wheel_steering_link_xz} ${front_wheel_steering_link_y} ${front_wheel_steering_link_xz}" />
-         <!-- visual front wheel -->
-         <cylinder length="${front_wheel_width}" radius="${front_wheel_radius}" />
-         <!-- visual rear wheel -->
-         <cylinder length="${rear_wheel_width}" radius="${rear_wheel_radius}" />
+         <xacro:chassis_visual />
+         <xacro:front_left_arm_visual />
+         <xacro:front_right_arm_visual />
+         <xacro:front_left_wheel_visual />
+         <xacro:front_right_wheel_visual />
+         <xacro:rear_left_wheel_visual />
+         <xacro:rear_right_wheel_visual />
       </xacro:chassis>
 
+      <xacro:front_bridge />
+
    </xacro:macro>
+
 
 </robot>

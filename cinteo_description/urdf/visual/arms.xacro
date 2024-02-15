@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="arms">
+
+    <xacro:macro name="front_arm_visual" params="mesh_filename">
+        <visual>
+            <origin xyz="0.0 0 0.285" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="${mesh_filename}" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name=" grey">
+                <color rgba=" 0.6 0.6 0.6 1" />
+            </material>
+        </visual>
+    </xacro:macro>
+
+    <xacro:macro name="front_left_arm_visual">
+        <xacro:front_arm_visual
+            mesh_filename="package://cinteo_description/meshes/left_wheel_arm.stl" />
+    </xacro:macro>
+
+    <xacro:macro name="front_right_arm_visual">
+        <xacro:front_arm_visual
+            mesh_filename="package://cinteo_description/meshes/right_wheel_arm.stl" />
+    </xacro:macro>
+
+</robot>

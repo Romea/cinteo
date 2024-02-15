@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="bridge">
+    <xacro:macro name="front_bridge">
+        <link name="${prefix}front_bridge_link">
+            <visual>
+                <origin xyz="-0.00 0.0 -0.06" rpy="0 0 0" />
+                <geometry>
+                    <mesh filename="package://cinteo_description/meshes/front_bridge.stl"
+                        scale="0.001 0.001 0.001" />
+                </geometry>
+                <!-- <xacro:beige /> -->
+            </visual>
+        </link>
+        <joint name="${prefix}front_bridge_joint" type="fixed">
+            <origin xyz="1.53 0 0.605" rpy="0 0 0" />
+            <parent link="${prefix}base_link" />
+            <child link="${prefix}front_bridge_link" />
+        </joint>
+
+    </xacro:macro>
+</robot>

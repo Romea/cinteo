@@ -4,7 +4,8 @@
   <xacro:macro name="cinteo_ros2_control" params="mode prefix base_name">
 
 
-    <xacro:include filename="$(find romea_mobile_base_description)/ros2_control/base2FWS2RWD.ros2_control.xacro" />
+    <xacro:include
+      filename="$(find romea_mobile_base_description)/ros2_control/base1FAS2RWD.ros2_control.xacro" />
 
     <xacro:property name="conf" value="$(find cinteo_description)/config/cinteo.yaml" />
     <xacro:property name="props" value="${load_yaml(conf)}" />
@@ -14,6 +15,8 @@
     <xacro:property name="base_footprint_joint"
       value="${props['joints']['base_footprint_joint_name']}" />
     <xacro:property name="inertial_joint" value="${props['joints']['inertial_joint_name']}" />
+    <xacro:property name="front_axle_steering_joint"
+      value="${props['joints']['front_axle_steering_joint_name']}" />
     <xacro:property name="front_left_wheel_steering_joint"
       value="${props['joints']['front_left_wheel_steering_joint_name']}" />
     <xacro:property name="front_right_wheel_steering_joint"
@@ -43,15 +46,15 @@
       value="${props['geometry']['front_axle']['wheels']['hub_carrier_offset']}" />
     <xacro:property name="rear_hub_carrier_offset"
       value="${props['geometry']['rear_axle']['wheels']['hub_carrier_offset']}" />
-    <xacro:property name="maximal_wheel_steering_angle"
-      value="${props['front_wheels_steering_control']['command']['maximal_angle']}" />
+    <xacro:property name="maximal_axle_steering_angle"
+      value="${props['front_axle_steering_control']['command']['maximal_angle']}" />
     <xacro:property name="maximal_wheel_speed"
       value="${props['rear_wheels_speed_control']['command']['maximal_speed']}" />
 
     <!-- hardware plugins -->
     <xacro:property name="simulation_hardware_plugin"
-      value="romea_mobile_base_gazebo/GazeboSystemInterface2FWS2RWD" />
-    <xacro:property name="live_hardware_plugin" 
+      value="romea_mobile_base_gazebo/GazeboSystemInterface1FAS2RWD" />
+    <xacro:property name="live_hardware_plugin"
       value="cinteo_hardware/CinteoHardware" />
 
 
