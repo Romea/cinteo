@@ -29,7 +29,7 @@ namespace romea
 namespace ros2
 {
 
-class CinteoHardware : public HardwareSystemInterface<HardwareInterface2FWS2RWD>
+class CinteoHardware : public HardwareSystemInterface<HardwareInterface1FAS2RWD>
 {
 public:
   RCLCPP_SHARED_PTR_DEFINITIONS(CinteoHardware);
@@ -69,18 +69,16 @@ private:
   void set_hardware_state_();
 
 private:
-  float front_wheel_radius_;
+  // float front_wheel_radius_;
   float rear_wheel_radius_;
-  double wheelbase_;
-  double front_track_;
+  // double wheelbase_;
+  // double front_track_;
 
-  std::atomic<float> front_left_wheel_steering_angle_measure_;
-  std::atomic<float> front_right_wheel_steering_angle_measure_;
+  std::atomic<float> front_steering_angle_measure_;
   std::atomic<float> rear_left_wheel_angular_speed_measure_;
   std::atomic<float> rear_right_wheel_angular_speed_measure_;
 
-  float front_left_wheel_steering_angle_command_;
-  float front_right_wheel_steering_angle_command_;
+  float front_steering_angle_command_;
   float rear_left_wheel_angular_speed_command_;
   float rear_right_wheel_angular_speed_command_;
 };

@@ -31,17 +31,15 @@ namespace ros2
 
 //-----------------------------------------------------------------------------
 CinteoHardware::CinteoHardware()
-: HardwareSystemInterface<HardwareInterface2FWS2RWD>("CinteoHardware"),
-  front_wheel_radius_(0),
+: HardwareSystemInterface<HardwareInterface1FAS2RWD>("CinteoHardware"),
+  // front_wheel_radius_(0),
   rear_wheel_radius_(0),
-  wheelbase_(0),
-  front_track_(0),
-  front_left_wheel_steering_angle_measure_(0),
-  front_right_wheel_steering_angle_measure_(0),
+  // wheelbase_(0),
+  // front_track_(0),
+  front_steering_angle_measure_(0),
   rear_left_wheel_angular_speed_measure_(0),
   rear_right_wheel_angular_speed_measure_(0),
-  front_left_wheel_steering_angle_command_(0),
-  front_right_wheel_steering_angle_command_(0),
+  front_steering_angle_command_(0),
   rear_left_wheel_angular_speed_command_(0),
   rear_right_wheel_angular_speed_command_(0)
 {
@@ -83,9 +81,9 @@ hardware_interface::return_type CinteoHardware::load_info_(
 {
   try {
     // Get some info from ros2_control item of robot urdf file
-    wheelbase_ = get_parameter<double>(hardware_info, "wheelbase");
-    front_track_ = get_parameter<double>(hardware_info, "front_track");
-    front_wheel_radius_ = get_parameter<float>(hardware_info, "front_wheel_radius");
+    // wheelbase_ = get_parameter<double>(hardware_info, "wheelbase");
+    // front_track_ = get_parameter<double>(hardware_info, "front_track");
+    // front_wheel_radius_ = get_parameter<float>(hardware_info, "front_wheel_radius");
     rear_wheel_radius_ = get_parameter<float>(hardware_info, "rear_wheel_radius");
     return hardware_interface::return_type::OK;
   } catch (std::runtime_error & e) {
@@ -120,8 +118,7 @@ hardware_interface::return_type CinteoHardware::read(
 {
   // RCLCPP_ERROR(rclcpp::get_logger("CinteoHardware"), "Read data from robot ");
   // To be implememented
-  // front_left_wheel_steering_angle_measure_ = ???
-  // front_right_wheel_steering_angle_measure_ = ???
+  // front_steering_angle_measure_ = ???
   // front_left_wheel_angular_speed_measure_ = ???
   // front_right_wheel_angular_speed_measure_ = ???
 
@@ -156,9 +153,8 @@ hardware_interface::return_type CinteoHardware::write(
 //-----------------------------------------------------------------------------
 void CinteoHardware::set_hardware_state_()
 {
-  core::HardwareState2FWS2RWD state;
-  state.frontLeftWheelSteeringAngle = front_left_wheel_steering_angle_measure_;
-  state.frontRightWheelSteeringAngle = front_right_wheel_steering_angle_measure_;
+  core::HardwareState1FAS2RWD state;
+  state.frontAxleSteeringAngle = front_steering_angle_measure_;
   state.rearLeftWheelSpinningMotion.velocity = rear_left_wheel_angular_speed_measure_;
   state.rearRightWheelSpinningMotion.velocity = rear_right_wheel_angular_speed_measure_;
   this->hardware_interface_->set_state(state);
@@ -167,10 +163,8 @@ void CinteoHardware::set_hardware_state_()
 //-----------------------------------------------------------------------------
 void CinteoHardware::get_hardware_command_()
 {
-  core::HardwareCommand2FWS2RWD command = hardware_interface_->get_command();
-
-  front_left_wheel_steering_angle_command_ = command.frontLeftWheelSteeringAngle;
-  front_right_wheel_steering_angle_command_ = command.frontRightWheelSteeringAngle;
+  core::HardwareCommand1FAS2RWD command = this->hardware_interface_->get_command();
+  front_steering_angle_command_ = command.frontAxleSteeringAngle;
   rear_left_wheel_angular_speed_command_ = command.rearLeftWheelSpinningSetPoint;
   rear_right_wheel_angular_speed_command_ = command.rearRightWheelSpinningSetPoint;
 }
