@@ -26,7 +26,7 @@
         <xacro:rear_wheel_visual />
     </xacro:macro>
 
-    <xacro:macro name="front_wheel_visual" params="orientation">
+    <xacro:macro name="front_wheel_visual">
         <xacro:wheel_visual
             mesh_filename="package://cinteo_description/meshes/front_wheel.stl" />
     </xacro:macro>
