@@ -48,6 +48,8 @@
       value="${props['geometry']['rear_axle']['wheels']['hub_carrier_offset']}" />
     <xacro:property name="maximal_axle_steering_angle"
       value="${props['front_axle_steering_control']['command']['maximal_angle']}" />
+    <xacro:property name="maximal_wheel_steering_angle"
+      value="${atan(tan(maximal_axle_steering_angle)/(1-tan(maximal_axle_steering_angle)*front_track/(2*wheelbase)))}" />
     <xacro:property name="maximal_wheel_speed"
       value="${props['rear_wheels_speed_control']['command']['maximal_speed']}" />
 
