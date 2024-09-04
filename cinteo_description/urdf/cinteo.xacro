@@ -8,6 +8,8 @@
       <xacro:include filename="$(find cinteo_description)/urdf/visual/chassis.xacro" />
       <xacro:include filename="$(find cinteo_description)/urdf/visual/wheels.xacro" />
       <xacro:include filename="$(find cinteo_description)/urdf/visual/arms.xacro" />
+      <xacro:include filename="$(find cinteo_description)/urdf/visual/color.xacro" />
+
 
       <xacro:property name="conf" value="$(find cinteo_description)/config/cinteo.yaml" />
       <xacro:property name="props" value="${load_yaml(conf)}" />
