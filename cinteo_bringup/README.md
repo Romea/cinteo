@@ -2,7 +2,7 @@
 
 ## 1 Launch files ##
 
-The cinteo_bringup package provides a suite of launch files enabling both manual and automated control of Cinteo robots, either in real-time or in simulation. 
+The cinteo_bringup package provides a suite of launch files enabling both manual and automated control of Cinteo robot, either in real-time or in simulation. 
 
 ![Controller mapping](doc/cinteo.jpg)
 

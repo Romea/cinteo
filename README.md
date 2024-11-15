@@ -1,6 +1,6 @@
 # cinteo #
 
-This project contains several ROS2 packages for working with Ceol robot, both in real-world applications and simulations. For more detailed information, please refer to the README files of each individual package.
+This project contains several ROS2 packages for working with Cinteo robot, both in real-world applications and simulations. For more detailed information, please refer to the README files of each individual package.
 
 ## **Usage**
 
