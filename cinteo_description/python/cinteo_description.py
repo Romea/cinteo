@@ -14,11 +14,40 @@
 
 
 import xacro
-
+import yaml
 from ament_index_python.packages import get_package_share_directory
 
+import romea_common_description
+from romea_mobile_base_description import get_specification_units, get_complete_configuration
 
-def urdf(prefix, mode, base_name, controller_manager_config_yaml_file, ros_prefix):
+
+def get_specifications_path_file():
+    return get_package_share_directory("cinteo_description") + "/config/cinteo.yaml"
+
+
+def get_specifications_configuration():
+    with open(get_specifications_path_file(), "r") as f:
+        return yaml.safe_load(f)
+
+
+def get_configuration():
+    specifications = get_specifications_configuration()
+    configuration = get_complete_configuration(specifications)
+    configuration["model"] = "cinteo"
+    configuration["version"] = ""
+    configuration["manufacturer"] = "xlim"
+    return configuration
+
+
+def generate_configuration_file(configuration, extended):
+    units = get_specification_units()
+    return romea_common_description.generate_configuration_file(configuration, units, extended)
+
+
+def generate_ros2_control_description(prefix, mode, base_name):
+
+    if mode == "simulation":
+        mode += "_gazebo_classic"
 
     ros2_control_xacro_file = (
         get_package_share_directory("cinteo_description")
@@ -34,26 +63,30 @@ def urdf(prefix, mode, base_name, controller_manager_config_yaml_file, ros_prefi
         },
     )
 
-    ros2_control_config_urdf_file = "/tmp/" + prefix + base_name + "_ros2_control.urdf"
+    return ros2_control_urdf_xml.toprettyxml(indent="  ")
 
-    with open(ros2_control_config_urdf_file, "w") as f:
-        f.write(ros2_control_urdf_xml.toprettyxml())
 
-    xacro_file = (
+def generate_urdf_description(
+        prefix, mode, base_name, controller_manager_config_yaml_file, ros_prefix
+):
+
+    if mode == "simulation":
+        mode += "_gazebo_classic"
+
+    base_xacro_file = (
         get_package_share_directory("cinteo_description")
         + "/urdf/cinteo.urdf.xacro"
     )
 
-    urdf_xml = xacro.process_file(
-        xacro_file,
+    base_urdf_xml = xacro.process_file(
+        base_xacro_file,
         mappings={
             "prefix": prefix,
             "mode": mode,
             "base_name": base_name,
             "controller_manager_config_yaml_file": controller_manager_config_yaml_file,
-            "ros2_control_config_urdf_file": ros2_control_config_urdf_file,
-            "ros_prefix": ros_prefix,
+            # "ros_prefix": ros_prefix,
         },
     )
 
-    return urdf_xml.toprettyxml()
+    return base_urdf_xml.toprettyxml(indent="  ")

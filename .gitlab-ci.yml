@@ -5,4 +5,3 @@ include:
 
 variables:
   PKGS_TO_BUILD_TEST: "cinteo_bringup cinteo_description cinteo_hardware"
-  ROS_DISTRO_TO_TEST: "humble"
