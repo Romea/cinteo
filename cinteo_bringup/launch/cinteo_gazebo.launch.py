@@ -62,7 +62,7 @@ def launch_setup(context, *args, **kwargs):
             )
         )
 
-        robot_description_file = "/tmp/aroco_description.urdf"
+        robot_description_file = "/tmp/cinteo_description.urdf"
         with open(robot_description_file, "w") as f:
             f.write(robot_urdf_description)
 
@@ -71,7 +71,7 @@ def launch_setup(context, *args, **kwargs):
                 package="gazebo_ros",
                 executable="spawn_entity.py",
                 exec_name="gazebo_spawn_entity",
-                arguments=["-file", robot_description_file, "-entity", "aroco"],
+                arguments=["-file", robot_description_file, "-entity", "cinteo"],
                 output={"stdout": "log", "stderr": "log"},
             )
         )
@@ -83,8 +83,8 @@ def generate_launch_description():
 
     urdf_description = Command(
         [
-            ExecutableInPackage("generate_urdf_description.py", "aroco_bringup"),
-            " robot_namespace:aroco",
+            ExecutableInPackage("generate_urdf_description.py", "cinteo_bringup"),
+            " robot_namespace:cinteo",
             " base_name:base",
             " mode:",
             LaunchConfiguration("mode"),
