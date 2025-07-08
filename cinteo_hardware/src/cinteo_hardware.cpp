@@ -109,13 +109,9 @@ void CinteoHardware::send_null_command_()
 
 
 //-----------------------------------------------------------------------------
-#if ROS_DISTRO == ROS_GALACTIC
-hardware_interface::return_type CinteoHardware::read()
-#else
 hardware_interface::return_type CinteoHardware::read(
   const rclcpp::Time & /*time*/,
   const rclcpp::Duration & /*period*/)
-#endif
 {
   // RCLCPP_ERROR(rclcpp::get_logger("CinteoHardware"), "Read data from robot ");
   // To be implememented
@@ -135,13 +131,9 @@ hardware_interface::return_type CinteoHardware::read(
 
 
 //-----------------------------------------------------------------------------
-#if ROS_DISTRO == ROS_GALACTIC
-hardware_interface::return_type CinteoHardware::write()
-# else
 hardware_interface::return_type CinteoHardware::write(
   const rclcpp::Time & /*time*/,
   const rclcpp::Duration & /*period*/)
-#endif
 {
   // RCLCPP_ERROR(rclcpp::get_logger("CinteoHardware"), "Send command to robot");
   get_hardware_command_();
