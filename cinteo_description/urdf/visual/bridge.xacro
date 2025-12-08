@@ -5,7 +5,9 @@
             <visual>
                 <origin xyz="-0.00 0.0 -0.06" rpy="0 0 0" />
                 <geometry>
-                    <mesh filename="package://cinteo_description/meshes/front_bridge.stl"
+                    <!-- <mesh filename="package://cinteo_description/meshes/front_bridge.stl"
+                        scale="0.001 0.001 0.001" /> -->
+                    <mesh filename="file://$(find cinteo_description)/meshes/front_bridge.stl"
                         scale="0.001 0.001 0.001" />
                 </geometry>
                 <!-- <xacro:beige /> -->

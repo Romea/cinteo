@@ -5,7 +5,9 @@
         <visual>
             <origin xyz="0 0 ${chassis_height-0.1}" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://cinteo_description/meshes/chasis_cinteo.stl"
+                <!-- <mesh filename="package://cinteo_description/meshes/chasis_cinteo.stl"
+                    scale="0.001 0.001 0.001" /> -->
+                <mesh filename="file://$(find cinteo_description)/meshes/chasis_cinteo.stl"
                     scale="0.001 0.001 0.001" />
             </geometry>
             <material name=" grey">

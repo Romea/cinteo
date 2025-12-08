@@ -14,8 +14,10 @@
     </xacro:macro>
 
     <xacro:macro name="rear_wheel_visual">
+        <!-- <xacro:wheel_visual
+            mesh_filename="package://cinteo_description/meshes/rear_wheel.stl" /> -->
         <xacro:wheel_visual
-            mesh_filename="package://cinteo_description/meshes/rear_wheel.stl" />
+            mesh_filename="file://$(find cinteo_description)/meshes/rear_wheel.stl" />
     </xacro:macro>
 
     <xacro:macro name="rear_left_wheel_visual">
@@ -27,8 +29,10 @@
     </xacro:macro>
 
     <xacro:macro name="front_wheel_visual">
+        <!-- <xacro:wheel_visual
+            mesh_filename="package://cinteo_description/meshes/front_wheel.stl" /> -->
         <xacro:wheel_visual
-            mesh_filename="package://cinteo_description/meshes/front_wheel.stl" />
+            mesh_filename="file://$(find cinteo_description)/meshes/front_wheel.stl" />
     </xacro:macro>
 
     <xacro:macro name="front_left_wheel_visual">

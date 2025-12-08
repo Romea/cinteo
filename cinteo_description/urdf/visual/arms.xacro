@@ -14,13 +14,18 @@
     </xacro:macro>
 
     <xacro:macro name="front_left_arm_visual">
+        <!-- <xacro:front_arm_visual
+            mesh_filename="package://cinteo_description/meshes/left_wheel_arm.stl" /> -->
         <xacro:front_arm_visual
-            mesh_filename="package://cinteo_description/meshes/left_wheel_arm.stl" />
+            mesh_filename="file://$(find cinteo_description)/meshes/left_wheel_arm.stl" />
+
     </xacro:macro>
 
     <xacro:macro name="front_right_arm_visual">
+        <!-- <xacro:front_arm_visual
+            mesh_filename="package://cinteo_description/meshes/right_wheel_arm.stl" /> -->
         <xacro:front_arm_visual
-            mesh_filename="package://cinteo_description/meshes/right_wheel_arm.stl" />
+            mesh_filename="file://$(find cinteo_description)/meshes/right_wheel_arm.stl" />
     </xacro:macro>
 
 </robot>
