@@ -31,7 +31,7 @@ namespace ros2
 
 //-----------------------------------------------------------------------------
 CinteoHardware::CinteoHardware()
-: HardwareSystemInterface<HardwareInterface1FAS2RWD>("CinteoHardware"),
+: HardwareSystemInterface1FAS2RWD("CinteoHardware"),
   // front_wheel_radius_(0),
   rear_wheel_radius_(0),
   // wheelbase_(0),

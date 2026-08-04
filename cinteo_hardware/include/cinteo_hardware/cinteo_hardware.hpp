@@ -29,7 +29,7 @@ namespace romea
 namespace ros2
 {
 
-class CinteoHardware : public HardwareSystemInterface<HardwareInterface1FAS2RWD>
+class CinteoHardware : public HardwareSystemInterface1FAS2RWD
 {
 public:
   RCLCPP_SHARED_PTR_DEFINITIONS(CinteoHardware);

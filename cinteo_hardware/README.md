@@ -10,7 +10,7 @@ The exported plugin is:
 
 | Plugin | Base class | Mobile base architecture |
 |---|---|---|
-| `cinteo_hardware/CinteoHardware` | `HardwareSystemInterface<HardwareInterface1FAS2RWD>` | `1FAS2RWD` |
+| `cinteo_hardware/CinteoHardware` | `HardwareSystemInterface1FAS2RWD` | `1FAS2RWD` |
 
 ## 2) Hardware concept
 
