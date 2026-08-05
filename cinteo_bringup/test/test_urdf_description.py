@@ -66,7 +66,7 @@ def test_hardware_plugin_name():
 
     assert ros2_control_xml("simulation").find(
         "ros2_control/hardware/plugin"
-    ).text == "romea_mobile_base_gazebo/GazeboSystemInterface1FAS2RWD"
+    ).text == "romea_mobile_base_gazebo/GazeboSystemInterface"
 
 
 def test_controller_filename_name():
